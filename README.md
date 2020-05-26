@@ -1,4 +1,11 @@
+![headline](images/logo.jpeg)
+
 # [GO-GENERATOR](https://github.com/wilian746/go-generator)
+
+<p align="center">
+  <a href="https://github.com/wilian746/go-generator/actions"><img src="https://img.shields.io/github/workflow/status/wilian746/go-generator/pipeline/master"/></a>
+  <a href="https://github.com/wilian746/go-generator/releases"><img src="https://img.shields.io/badge/version-v0.1.4-green"/></a>
+</p>
 
 ## What is GO-GENERATOR?
 Go generator is an simple command line interface to generate default files to start your implementation with go in a base pre-configurated.
