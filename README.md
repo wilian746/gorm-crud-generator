@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/wilian746/go-generator/actions"><img src="https://img.shields.io/github/workflow/status/wilian746/go-generator/pipeline/master"/></a>
-  <a href="https://github.com/wilian746/go-generator/releases"><img src="https://img.shields.io/badge/version-v0.1.4-green"/></a>
+  <a href="https://github.com/wilian746/go-generator/releases"><img src="https://img.shields.io/github/v/tag/wilian746/go-generator?color=green&label=Version"/></a>
 </p>
 
 ## What is GO-GENERATOR?
