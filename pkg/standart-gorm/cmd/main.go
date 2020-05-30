@@ -34,7 +34,7 @@ func main() {
 	port := fmt.Sprintf(":%v", configs.Port)
 	router := routes.NewRouter().SetRouters(repository)
 	log.Println("service running on port ", port)
-	log.Println("swagger running on url: ", fmt.Sprintf("http://localhost%v/swagger/index.html", port))
+	log.Println("swagger running on url: ", fmt.Sprintf("http://localhost:%v/swagger/index.html", configs.Port))
 
 	server := http.ListenAndServe(port, router)
 	log.Fatal(server)
