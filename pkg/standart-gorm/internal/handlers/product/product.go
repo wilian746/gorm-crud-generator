@@ -34,6 +34,19 @@ func (h *Handler) Get(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// Get One Product
+// @Summary Get One Product
+// @Description Get One Product by ID
+// @ID get-product-by-id
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Account ID"
+// @Success 200 {object} product.Product
+// @Header 200 {string} Token "Authorization"
+// @Failure 400 {object} HttpStatus.Response
+// @Failure 404 {object} HttpStatus.Response
+// @Failure 500 {object} HttpStatus.Response
+// @Router /product/{ID} [get]
 func (h *Handler) getOne(w http.ResponseWriter, r *http.Request) {
 	ID, err := uuid.Parse(chi.URLParam(r, "ID"))
 	if err != nil {
