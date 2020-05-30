@@ -1,4 +1,11 @@
+![headline](images/logo.jpeg)
+
 # [GO-GENERATOR](https://github.com/wilian746/go-generator)
+
+<p align="center">
+  <a href="https://github.com/wilian746/go-generator/actions"><img src="https://img.shields.io/github/workflow/status/wilian746/go-generator/Go/master?label=Build"/></a>
+  <a href="https://github.com/wilian746/go-generator/releases"><img src="https://img.shields.io/github/v/tag/wilian746/go-generator?color=green&label=Version"/></a>
+</p>
 
 ## What is GO-GENERATOR?
 Go generator is an simple command line interface to generate default files to start your implementation with go in a base pre-configurated.
@@ -12,7 +19,7 @@ Currently an generator of code is:
 ## Usage
 ### Install in your local machine
 ```bash
-go get -u https://github.com/wilian746/go-generator/cmd/go-generator
+go get -u github.com/wilian746/go-generator/cmd/go-generator
 ```
 
 ### Check installation
@@ -23,7 +30,7 @@ go-generator
 ### Init application
 This command will copy all standart content using gorm library to path and module indicated  
  ```bash
-go-generator init gorm server
+go-generator init gorm app
  ```
 After running the command above it will ask you which is the directory you want to perform the standard installation.
 By default, it's already suggests the current directory as the installation location, but you can change it.
@@ -37,7 +44,7 @@ See example!
 ```bash
 ✔ Enter module of golang project: github.com/wilian746/go-generator/tmp
 ```
-🥰🤩😍 Yeaahhh!! Your installation's finished! 😁
+🤩 Yeaahhh!! Your installation's finished! 😁
     
 
 ## Generated structure
@@ -65,12 +72,12 @@ We generatated some codes to facilities the life of the developer.
 
 ## Plans?
 We are just getting started, the main objective is to aggregate several banks on a solid and consistent implementation basis so that all developers can save development time, so we have some activities that we will still do in the short, medium and long term.
-* Phase 1: Initial project implementation using relational database ✔ 😍
+* Phase 1: Initial project implementation using relational database ✔ 
 * Phase 2: Integration with the MongoDB database ⌚️
-* Phase 3: Integration with the RabbitMQ broker💡 ⌛️
-* Phase 4: Creation of separate resources such as creating only a new route or a new controller 📩✴️
+* Phase 3: Integration with the RabbitMQ broker💡 ️
+* Phase 4: Creation of separate resources such as creating only a new route or a new controller ✴️
 * Phase 5: Add optional implementations like the Redis memory database in specific routes ♨️
-- And several other ideas...👁‍ 🃏
+- And several other ideas...👁‍ 
 
 ## Issue?
 We are happy with your help, you can direct us by channel of [Issues](https://github.com/wilian746/go-generator/issues) that we will help with the greatest pleasure!
