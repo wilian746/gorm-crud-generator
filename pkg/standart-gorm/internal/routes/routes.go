@@ -1,8 +1,10 @@
 package routes
 
 import (
+	"fmt"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/swaggo/http-swagger"
 	ServerConfig "github.com/wilian746/go-generator/pkg/standart-gorm/configs"
 	HealthHandler "github.com/wilian746/go-generator/pkg/standart-gorm/internal/handlers/health"
 	ProductHandler "github.com/wilian746/go-generator/pkg/standart-gorm/internal/handlers/product"
@@ -24,6 +26,7 @@ func NewRouter() *Router {
 func (r *Router) SetRouters(repository adapter.Interface) *chi.Mux {
 	r.setConfigsRouters()
 
+	r.RouterSwagger()
 	r.RouterHealth(repository)
 	r.RouterProduct(repository)
 
@@ -37,6 +40,13 @@ func (r *Router) setConfigsRouters() {
 	r.EnableRecover()
 	r.EnableRequestID()
 	r.EnableRealIP()
+}
+
+func (r *Router) RouterSwagger() {
+	swaggerHost := fmt.Sprintf("http://localhost:%v/swagger/doc.json", ServerConfig.GetConfig().Port)
+	r.router.Get("/swagger/*", httpSwagger.Handler(
+		httpSwagger.URL(swaggerHost),
+	))
 }
 
 func (r *Router) RouterHealth(repository adapter.Interface) {

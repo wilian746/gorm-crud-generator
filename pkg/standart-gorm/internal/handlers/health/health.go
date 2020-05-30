@@ -21,6 +21,14 @@ func NewHandler(repository adapter.Interface) handlers.Interface {
 	}
 }
 
+// Health
+// @Description Health
+// @ID health
+// @Accept  json
+// @Produce  json
+// @Success 200
+// @Failure 500
+// @Router /health [get]
 func (h *Handler) Get(w http.ResponseWriter, r *http.Request) {
 	if !h.Repository.Health() {
 		HttpStatus.StatusInternalServerError(w, r, ErrRelationalNotOK)

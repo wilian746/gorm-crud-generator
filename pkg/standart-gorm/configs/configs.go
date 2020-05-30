@@ -11,7 +11,7 @@ type Config struct {
 
 func GetConfig() Config {
 	return Config{
-		Port:        environment.GetEnvAndParseToInt("PORT", 8666),
+		Port:        environment.GetEnvAndParseToInt("PORT", 8080),
 		Timeout:     environment.GetEnvAndParseToInt("TIMEOUT", 30),
 		Dialect:     environment.GetEnvString("DATABASE_DIALECT", "sqlite3"),
 		DatabaseURI: environment.GetEnvString("DATABASE_URI", ":memory:"),
