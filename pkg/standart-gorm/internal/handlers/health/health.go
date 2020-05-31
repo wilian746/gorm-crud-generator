@@ -2,7 +2,7 @@ package health
 
 import (
 	"errors"
-	_ "github.com/wilian746/go-generator/pkg/standart-gorm/internal/entities/health"
+	_ "github.com/wilian746/go-generator/pkg/standart-gorm/internal/entities/health" // import used in swagger
 	"github.com/wilian746/go-generator/pkg/standart-gorm/internal/handlers"
 	HttpStatus "github.com/wilian746/go-generator/pkg/standart-gorm/internal/utils/http"
 	"github.com/wilian746/go-generator/pkg/standart-gorm/pkg/repository/adapter"

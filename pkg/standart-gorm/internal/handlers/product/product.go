@@ -5,8 +5,8 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/google/uuid"
 	ControllersProduct "github.com/wilian746/go-generator/pkg/standart-gorm/internal/controllers/product"
-	_ "github.com/wilian746/go-generator/pkg/standart-gorm/internal/entities"
-	_ "github.com/wilian746/go-generator/pkg/standart-gorm/internal/entities/product"
+	_ "github.com/wilian746/go-generator/pkg/standart-gorm/internal/entities"         // import used in swagger
+	_ "github.com/wilian746/go-generator/pkg/standart-gorm/internal/entities/product" // import used in swagger
 	"github.com/wilian746/go-generator/pkg/standart-gorm/internal/handlers"
 	RulesProduct "github.com/wilian746/go-generator/pkg/standart-gorm/internal/rules/product"
 	HttpStatus "github.com/wilian746/go-generator/pkg/standart-gorm/internal/utils/http"

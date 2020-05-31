@@ -8,11 +8,12 @@ const (
 	ConfigsConfigs                          Files = "configs/configs.go"
 	ConfigsConfigsTest                      Files = "configs/configs_test.go"
 	DocsDocs                                Files = "docs/docs.go"
-	DocsSwaggerJson                         Files = "docs/swagger.json"
-	DocsSwaggerYaml                         Files = "docs/swagger.yaml"
+	DocsSwaggerJSON                         Files = "docs/swagger.json"
+	DocsSwaggerYAML                         Files = "docs/swagger.yaml"
 	InternalControllersProductProduct       Files = "internal/controllers/product/product.go"
 	InternalControllersProductProductTest   Files = "internal/controllers/product/product_test.go"
 	InternalEntitiesBase                    Files = "internal/entities/base.go"
+	InternalEntitiesHealthSwaggerEntities   Files = "internal/entities/health/swagger_entities.go"
 	InternalEntitiesProductProduct          Files = "internal/entities/product/product.go"
 	InternalEntitiesProductSwaggerEntities  Files = "internal/entities/product/swagger_entities.go"
 	InternalHandlersInterface               Files = "internal/handlers/interface.go"
@@ -53,12 +54,13 @@ func Values() []Files {
 		ConfigsConfigs,
 		ConfigsConfigsTest,
 		DocsDocs,
-		DocsSwaggerJson,
-		DocsSwaggerYaml,
+		DocsSwaggerJSON,
+		DocsSwaggerYAML,
 		InternalControllersProductProduct,
 		InternalControllersProductProductTest,
 		InternalEntitiesBase,
 		InternalEntitiesProductProduct,
+		InternalEntitiesHealthSwaggerEntities,
 		InternalEntitiesProductSwaggerEntities,
 		InternalHandlersInterface,
 		InternalHandlersProductProduct,

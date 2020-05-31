@@ -52,13 +52,13 @@ func StatusNoContent(w http.ResponseWriter, r *http.Request) {
 
 // 400
 func StatusBadRequest(w http.ResponseWriter, r *http.Request, err error) {
-	data := errorData{ Error: err.Error() }
+	data := errorData{Error: err.Error()}
 	newResponse(data, http.StatusBadRequest).sendResponse(w, r)
 }
 
 // 404
 func StatusNotfound(w http.ResponseWriter, r *http.Request, err error) {
-	data := errorData{ Error: err.Error() }
+	data := errorData{Error: err.Error()}
 	newResponse(data, http.StatusNotFound).sendResponse(w, r)
 }
 
@@ -69,6 +69,6 @@ func StatusMethodNotAllowed(w http.ResponseWriter, r *http.Request) {
 
 // 500
 func StatusInternalServerError(w http.ResponseWriter, r *http.Request, err error) {
-	data := errorData{ Error: err.Error() }
+	data := errorData{Error: err.Error()}
 	newResponse(data, http.StatusInternalServerError).sendResponse(w, r)
 }

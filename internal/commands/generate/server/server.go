@@ -13,6 +13,8 @@ import (
 	"strings"
 )
 
+const ImportModuleName = "github.com/wilian746/go-generator"
+
 type Interface interface {
 	CreateFoldersAndFiles(pathDestiny, moduleName string, db database.Database) error
 }
@@ -80,7 +82,7 @@ func (s *Server) writeContent(pathDestiny, dir string, fileContent []byte) error
 }
 
 func (s *Server) replaceImportsToModuleName(fileContent []byte, moduleName string) []byte {
-	importModule := "github.com/wilian746/go-generator/pkg/standart-gorm"
+	importModule := ImportModuleName + "/pkg/standart-gorm"
 
 	fileContentReplaced := strings.ReplaceAll(string(fileContent), importModule, moduleName)
 
@@ -88,9 +90,7 @@ func (s *Server) replaceImportsToModuleName(fileContent []byte, moduleName strin
 }
 
 func (s *Server) replaceModuleToModuleName(fileContent []byte, moduleName string) []byte {
-	importModule := "github.com/wilian746/go-generator"
-
-	fileContentReplaced := strings.ReplaceAll(string(fileContent), importModule, moduleName)
+	fileContentReplaced := strings.ReplaceAll(string(fileContent), ImportModuleName, moduleName)
 
 	return []byte(fileContentReplaced)
 }

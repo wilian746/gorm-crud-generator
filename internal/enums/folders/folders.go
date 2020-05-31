@@ -11,6 +11,7 @@ const (
 	InternalControllersProduct Folders = "internal/controllers/product"
 	InternalEntities           Folders = "internal/entities"
 	InternalEntitiesProduct    Folders = "internal/entities/product"
+	InternalEntitiesHealth     Folders = "internal/entities/health"
 	InternalHandlers           Folders = "internal/handlers"
 	InternalHandlersProduct    Folders = "internal/handlers/product"
 	InternalHandlersHealth     Folders = "internal/handlers/health"
@@ -39,6 +40,7 @@ func Values() []Folders {
 		InternalControllersProduct,
 		InternalEntities,
 		InternalEntitiesProduct,
+		InternalEntitiesHealth,
 		InternalHandlers,
 		InternalHandlersProduct,
 		InternalHandlersHealth,
