@@ -8,7 +8,18 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: http://swagger.io/terms/
-  title: Swagger Example API
+  title: Swagger Example API EEEEEEYYYY
   version: "1.0"
-paths: {}
+paths:
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Health
+      operationId: health
+      produces:
+      - application/json
+      responses:
+        "200": {}
+        "500": {}
 swagger: "2.0"
