@@ -11,6 +11,8 @@ import (
 	"github.com/wilian746/go-generator/pkg/standart-gorm/pkg/repository/adapter"
 )
 
+const BasePath = "/api/v1"
+
 type Router struct {
 	config *Config
 	router *chi.Mux
@@ -52,7 +54,7 @@ func (r *Router) RouterSwagger() {
 func (r *Router) RouterHealth(repository adapter.Interface) {
 	handler := HealthHandler.NewHandler(repository)
 
-	r.router.Route("/health", func(route chi.Router) {
+	r.router.Route(BasePath+"/health", func(route chi.Router) {
 		route.Post("/", handler.Post)
 		route.Get("/", handler.Get)
 		route.Put("/", handler.Put)
@@ -64,7 +66,7 @@ func (r *Router) RouterHealth(repository adapter.Interface) {
 func (r *Router) RouterProduct(repository adapter.Interface) {
 	handler := ProductHandler.NewHandler(repository)
 
-	r.router.Route("/product", func(route chi.Router) {
+	r.router.Route(BasePath+"/product", func(route chi.Router) {
 		route.Post("/", handler.Post)
 		route.Get("/", handler.Get)
 		route.Get("/{ID}", handler.Get)

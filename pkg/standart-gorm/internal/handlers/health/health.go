@@ -2,6 +2,7 @@ package health
 
 import (
 	"errors"
+	_ "github.com/wilian746/go-generator/pkg/standart-gorm/internal/entities/health"
 	"github.com/wilian746/go-generator/pkg/standart-gorm/internal/handlers"
 	HttpStatus "github.com/wilian746/go-generator/pkg/standart-gorm/internal/utils/http"
 	"github.com/wilian746/go-generator/pkg/standart-gorm/pkg/repository/adapter"
@@ -21,13 +22,14 @@ func NewHandler(repository adapter.Interface) handlers.Interface {
 	}
 }
 
-// Health
-// @Description Health
+// @Tags Health
+// @Security ApiKeyAuth
+// @Description Check if Health  of service it's OK!
 // @ID health
 // @Accept  json
 // @Produce  json
-// @Success 200
-// @Failure 500
+// @Success 200 {object} health.ResponseHealth
+// @Failure 500 {object} http.ResponseError
 // @Router /health [get]
 func (h *Handler) Get(w http.ResponseWriter, r *http.Request) {
 	if !h.Repository.Health() {

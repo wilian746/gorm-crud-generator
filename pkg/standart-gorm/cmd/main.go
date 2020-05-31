@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/wilian746/go-generator/pkg/standart-gorm/configs"
-	_ "github.com/wilian746/go-generator/pkg/standart-gorm/docs" // docs is generatedon base of repository
+	"github.com/wilian746/go-generator/pkg/standart-gorm/docs"
 	"github.com/wilian746/go-generator/pkg/standart-gorm/internal/entities/product"
 	"github.com/wilian746/go-generator/pkg/standart-gorm/internal/routes"
 	"github.com/wilian746/go-generator/pkg/standart-gorm/pkg/repository/adapter"
@@ -12,17 +12,21 @@ import (
 	"net/http"
 )
 
-// @title Swagger Example API EEEEEEYYYY
+// @title Standart Gorm
 // @version 1.0
-// @description This is a sample server Petstore server.
+// @description This is a sample server using standart gorm server.
 // @termsOfService http://swagger.io/terms/
 
-// @contact.name API Support
-// @contact.url http://www.swagger.io/support
+// @contact.name Standart Gorm Support
+// @contact.url https://github.com/wilian746/go-generator/issues
 // @contact.email support@swagger.io
 
-// @license.name Apache 2.0
-// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @license.name MIT
+// @license.url https://github.com/wilian746/go-generator/blob/master/LICENSE
+
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 func main() {
 	configs := config.GetConfig()
 	entity := &product.Product{}
@@ -34,8 +38,16 @@ func main() {
 	port := fmt.Sprintf(":%v", configs.Port)
 	router := routes.NewRouter().SetRouters(repository)
 	log.Println("service running on port ", port)
-	log.Println("swagger running on url: ", fmt.Sprintf("http://localhost:%v/swagger/index.html", configs.Port))
 
+	setupSwagger()
 	server := http.ListenAndServe(port, router)
 	log.Fatal(server)
+}
+
+func setupSwagger() {
+	configs := config.GetConfig()
+	// If your change host to Ex.: 192.168.1.0 is necessary change manually you field of search to your host too in your browser
+	docs.SwaggerInfo.Host = configs.SwaggerHost
+	docs.SwaggerInfo.BasePath = routes.BasePath
+	log.Println("swagger running on url: ", fmt.Sprintf("http://%s/swagger/index.html", docs.SwaggerInfo.Host))
 }
