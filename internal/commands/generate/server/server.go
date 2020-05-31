@@ -58,7 +58,9 @@ func (s *Server) createFiles(pathDestiny, moduleName, databaseFolderName string)
 		if err != nil {
 			return err
 		}
-		fileContent = s.replaceImportsToModuleName(fileContent, moduleName)
+		if dir != files.Readme {
+			fileContent = s.replaceImportsToModuleName(fileContent, moduleName)
+		}
 		err = s.writeContent(pathDestiny, string(dir), fileContent)
 		if err != nil {
 			return err
