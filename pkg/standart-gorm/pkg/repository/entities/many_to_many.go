@@ -7,10 +7,10 @@ import (
 
 type Doctor struct {
 	Interface
-	ID uuid.UUID `gorm:"type:uuid;primary_key;"`
-	Name string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	ID              uuid.UUID `gorm:"type:uuid;primary_key;"`
+	Name            string
+	CreatedAt       time.Time
+	UpdatedAt       time.Time
 	DoctorsPatients []DoctorPatient `gorm:"foreignkey:DoctorID;association_foreignkey:ID"`
 }
 
@@ -28,13 +28,13 @@ func (d *Doctor) SetUpdatedAt() {
 
 type DoctorPatient struct {
 	Interface
-	ID uuid.UUID `gorm:"type:uuid;primary_key;"`
+	ID        uuid.UUID `gorm:"type:uuid;primary_key;"`
 	PatientID uuid.UUID `sql:"type:uuid REFERENCES patients(id) ON DELETE CASCADE"`
-	DoctorID uuid.UUID `sql:"type:uuid REFERENCES doctors(id) ON DELETE CASCADE"`
+	DoctorID  uuid.UUID `sql:"type:uuid REFERENCES doctors(id) ON DELETE CASCADE"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	Patient Patient `gorm:"foreignkey:PatientID;association_foreignkey:ID"`
-	Doctor Doctor `gorm:"foreignkey:DoctorID;association_foreignkey:ID"`
+	Patient   Patient `gorm:"foreignkey:PatientID;association_foreignkey:ID"`
+	Doctor    Doctor  `gorm:"foreignkey:DoctorID;association_foreignkey:ID"`
 }
 
 func (dp *DoctorPatient) TableName() string {
@@ -51,10 +51,10 @@ func (dp *DoctorPatient) SetUpdatedAt() {
 
 type Patient struct {
 	Interface
-	ID uuid.UUID `gorm:"type:uuid;primary_key;"`
-	Name string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	ID              uuid.UUID `gorm:"type:uuid;primary_key;"`
+	Name            string
+	CreatedAt       time.Time
+	UpdatedAt       time.Time
 	DoctorsPatients []DoctorPatient `gorm:"foreignkey:PatientID;association_foreignkey:ID"`
 }
 

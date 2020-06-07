@@ -26,7 +26,7 @@ const (
 	Migrations                 Folders = "migrations"
 	MigrationsMysql            Folders = "migrations/mysql"
 	MigrationsPostgres         Folders = "migrations/postgres"
-	MigrationsSqlServer        Folders = "migrations/sqlserver"
+	MigrationsSQLServer        Folders = "migrations/sqlserver"
 	Pkg                        Folders = "pkg/repository"
 	PkgRepository              Folders = "pkg/repository"
 	PkgRepositoryAdapter       Folders = "pkg/repository/adapter"
@@ -66,6 +66,6 @@ func Values() []Folders {
 		Migrations,
 		MigrationsMysql,
 		MigrationsPostgres,
-		MigrationsSqlServer,
+		MigrationsSQLServer,
 	}
 }

@@ -7,11 +7,11 @@ import (
 
 type Restaurant struct {
 	Interface
-	ID uuid.UUID `gorm:"type:uuid;primary_key;"`
-	Name string
+	ID        uuid.UUID `gorm:"type:uuid;primary_key;"`
+	Name      string
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	Orders []Order `gorm:"foreignkey:RestaurantID;association_foreignkey:ID"`
+	Orders    []Order `gorm:"foreignkey:RestaurantID;association_foreignkey:ID"`
 }
 
 func (r *Restaurant) TableName() string {
@@ -28,11 +28,11 @@ func (r *Restaurant) SetUpdatedAt() {
 
 type Order struct {
 	Interface
-	ID uuid.UUID `gorm:"type:uuid;primary_key;"`
-	Description string
+	ID           uuid.UUID `gorm:"type:uuid;primary_key;"`
+	Description  string
 	RestaurantID uuid.UUID `sql:"type:uuid REFERENCES restaurants(id) ON DELETE CASCADE"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	CreatedAt    time.Time
+	UpdatedAt    time.Time
 }
 
 func (o *Order) TableName() string {

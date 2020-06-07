@@ -54,11 +54,11 @@ const (
 )
 
 const (
-	GitIgnore                               NoGo  = ".gitignore"
-	GolangCi                                NoGo  = ".golangci.yml"
-	Makefile                                NoGo  = "Makefile"
-	GoMod                                   NoGo  = "go.mod"
-	GoSum                                   NoGo  = "go.sum"
+	GitIgnore NoGo = ".gitignore"
+	GolangCi  NoGo = ".golangci.yml"
+	Makefile  NoGo = "Makefile"
+	GoMod     NoGo = "go.mod"
+	GoSum     NoGo = "go.sum"
 )
 
 func Values() []Files {

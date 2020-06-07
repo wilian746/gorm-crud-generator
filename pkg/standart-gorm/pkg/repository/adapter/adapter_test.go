@@ -148,10 +148,10 @@ func Test_One_to_One(t *testing.T) {
 		adapter := NewAdapter(connection).SetLogMode(true)
 		firstNameToCreateStudent := uuid.New().String()
 		contact := &entities.Contact{
-			ID:        uuid.New(),
-			City:      uuid.New().String(),
-			Phone:     uuid.New().String(),
-			Address:   uuid.New().String(),
+			ID:      uuid.New(),
+			City:    uuid.New().String(),
+			Phone:   uuid.New().String(),
+			Address: uuid.New().String(),
 		}
 		student := &entities.Student{
 			ID:        uuid.New(),
@@ -209,7 +209,6 @@ func Test_One_to_One(t *testing.T) {
 		responseDelete = adapter.Delete(map[string]interface{}{"id": contact.ID}, contact.TableName())
 		assert.NoError(t, responseDelete.Error())
 
-
 		queryFindOneDelete := adapter.
 			Connection(student.TableName()).
 			Where(map[string]interface{}{"id": student.ID}).
@@ -229,10 +228,10 @@ func Test_One_to_One_Transaction(t *testing.T) {
 		adapter := NewAdapter(connection).SetLogMode(true)
 		firstNameToCreateStudent := uuid.New().String()
 		contact := &entities.Contact{
-			ID:        uuid.New(),
-			City:      uuid.New().String(),
-			Phone:     uuid.New().String(),
-			Address:   uuid.New().String(),
+			ID:      uuid.New(),
+			City:    uuid.New().String(),
+			Phone:   uuid.New().String(),
+			Address: uuid.New().String(),
 		}
 		student := &entities.Student{
 			ID:        uuid.New(),
@@ -344,10 +343,10 @@ func Test_One_to_One_Transaction(t *testing.T) {
 		adapter := NewAdapter(connection).SetLogMode(true)
 		firstNameToCreateStudent := uuid.New().String()
 		contact := &entities.Contact{
-			ID:        uuid.New(),
-			City:      uuid.New().String(),
-			Phone:     uuid.New().String(),
-			Address:   uuid.New().String(),
+			ID:      uuid.New(),
+			City:    uuid.New().String(),
+			Phone:   uuid.New().String(),
+			Address: uuid.New().String(),
 		}
 		student := &entities.Student{
 			ID:        uuid.New(),
@@ -398,8 +397,8 @@ func Test_One_to_Many(t *testing.T) {
 		adapter := NewAdapter(connection).SetLogMode(true)
 		nameToCreate := uuid.New().String()
 		restaurant := &entities.Restaurant{
-			ID:        uuid.New(),
-			Name:      nameToCreate,
+			ID:   uuid.New(),
+			Name: nameToCreate,
 		}
 		order := &entities.Order{
 			ID:           uuid.New(),
@@ -475,11 +474,11 @@ func Test_Many_to_Many(t *testing.T) {
 		nameToCreateDoctor := uuid.New().String()
 		nameToCreatePatient := uuid.New().String()
 		doctor := &entities.Doctor{
-			ID:        uuid.New(),
-			Name:      nameToCreateDoctor,
+			ID:   uuid.New(),
+			Name: nameToCreateDoctor,
 		}
 		patient := &entities.Patient{
-			ID:           uuid.New(),
+			ID:   uuid.New(),
 			Name: nameToCreatePatient,
 		}
 		doctorPatient := &entities.DoctorPatient{

@@ -7,11 +7,11 @@ import (
 
 type Student struct {
 	Interface
-	ID uuid.UUID `gorm:"type:uuid;primary_key;"`
+	ID        uuid.UUID `gorm:"type:uuid;primary_key;"`
 	FirstName string
-	LastName string
+	LastName  string
 	ContactID uuid.UUID `sql:"type:uuid REFERENCES contacts(id) ON DELETE CASCADE"`
-	Contact Contact `gorm:"foreignkey:ContactID;association_foreignkey:ID"`
+	Contact   Contact   `gorm:"foreignkey:ContactID;association_foreignkey:ID"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
@@ -30,10 +30,10 @@ func (s *Student) SetUpdatedAt() {
 
 type Contact struct {
 	Interface
-	ID uuid.UUID `gorm:"type:uuid;primary_key;"`
-	City string
-	Phone string
-	Address string
+	ID        uuid.UUID `gorm:"type:uuid;primary_key;"`
+	City      string
+	Phone     string
+	Address   string
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
