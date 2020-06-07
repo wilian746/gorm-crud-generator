@@ -54,3 +54,13 @@ You can change uri to path of file database too. `Ex.: /path/dest/file/standartg
 |------------------|----------------|
 | DATABASE_DIALECT | mssql          |
 | DATABASE_URI     | sqlserver://admin:admin@localhost:1433?database=standartgorm |
+
+
+## Swagger
+To update swagger.json, you need run command into **root folder location** of the project
+```bash
+swag ini -g ./cmd/main.go
+```
+To more information you can see [docs of SWAG](https://github.com/swaggo/swag)
+
+## Migrations
