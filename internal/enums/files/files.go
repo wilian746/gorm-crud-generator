@@ -38,6 +38,9 @@ const (
 	PkgRepositoryDatabaseDatabase           Files = "pkg/repository/database/database.go"
 	PkgRepositoryDatabaseDatabaseTest       Files = "pkg/repository/database/database_test.go"
 	PkgRepositoryEntitiesInterface          Files = "pkg/repository/entities/interface.go"
+	PkgRepositoryEntitiesManyToMany          Files = "pkg/repository/entities/many_to_many.go"
+	PkgRepositoryEntitiesOneToMany          Files = "pkg/repository/entities/one_to_many.go"
+	PkgRepositoryEntitiesOneToOne          Files = "pkg/repository/entities/one_to_one.go"
 	PkgRepositoryResponseResponse           Files = "pkg/repository/response/response.go"
 	PkgRepositoryResponseResponseTest       Files = "pkg/repository/response/response_test.go"
 	Readme                                  Files = "README.md"
@@ -84,6 +87,9 @@ func Values() []Files {
 		PkgRepositoryDatabaseDatabase,
 		PkgRepositoryDatabaseDatabaseTest,
 		PkgRepositoryEntitiesInterface,
+		PkgRepositoryEntitiesManyToMany,
+		PkgRepositoryEntitiesOneToMany,
+		PkgRepositoryEntitiesOneToOne,
 		PkgRepositoryResponseResponse,
 		PkgRepositoryResponseResponseTest,
 		Readme,

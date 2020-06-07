@@ -391,3 +391,170 @@ func Test_One_to_One_Transaction(t *testing.T) {
 		}
 	})
 }
+
+func Test_One_to_Many(t *testing.T) {
+	t.Run("Should run tests to execute Create, Read, Update, Delete with One To Many", func(t *testing.T) {
+		connection := database.GetConnection("sqlite3", ":memory:").LogMode(true)
+		adapter := NewAdapter(connection).SetLogMode(true)
+		nameToCreate := uuid.New().String()
+		restaurant := &entities.Restaurant{
+			ID:        uuid.New(),
+			Name:      nameToCreate,
+		}
+		order := &entities.Order{
+			ID:           uuid.New(),
+			Description:  uuid.New().String(),
+			RestaurantID: restaurant.ID,
+		}
+		assert.NoError(t, connection.Table(restaurant.TableName()).AutoMigrate(&entities.Restaurant{}).Error)
+		assert.NoError(t, connection.Table(order.TableName()).AutoMigrate(&entities.Order{}).Error)
+
+		restaurant.SetCreatedAt()
+		order.SetUpdatedAt()
+		order.SetCreatedAt()
+		restaurant.SetUpdatedAt()
+
+		responseCreate := adapter.Create(restaurant, restaurant.TableName())
+		assert.NoError(t, responseCreate.Error())
+		responseCreate = adapter.Create(order, order.TableName())
+		assert.NoError(t, responseCreate.Error())
+
+		queryFindAll := adapter.Connection(restaurant.TableName())
+		entityToCheckFindAll := []entities.Restaurant{}
+		responseFindAll := adapter.Find(queryFindAll, &entityToCheckFindAll, restaurant.TableName())
+		assert.NoError(t, responseFindAll.Error())
+		assert.NotEqual(t, len(entityToCheckFindAll), 0)
+
+		queryFindOne := adapter.
+			Connection(restaurant.TableName()).
+			Where(map[string]interface{}{"id": restaurant.ID}).
+			Limit(1).
+			Preload("Orders")
+		entityToCheckFindOne := entities.Restaurant{}
+		responseFindOne := adapter.Find(queryFindOne, &entityToCheckFindOne, restaurant.TableName())
+		assert.NoError(t, responseFindOne.Error())
+		assert.NotEqual(t, entityToCheckFindOne.ID, uuid.Nil)
+		assert.NotEqual(t, len(entityToCheckFindOne.Orders), 0)
+
+		restaurant.Name = uuid.New().String()
+		responseUpdate := adapter.Update(map[string]interface{}{"id": restaurant.ID}, restaurant, restaurant.TableName())
+		assert.NoError(t, responseUpdate.Error())
+
+		queryFindOneUpdate := adapter.
+			Connection(restaurant.TableName()).
+			Where(map[string]interface{}{"id": restaurant.ID}).
+			Limit(1)
+		assert.NoError(t, queryFindOneUpdate.Error)
+		entityToCheckUpdate := entities.Restaurant{}
+		responseFindOneUpdate := adapter.Find(queryFindOneUpdate, &entityToCheckUpdate, restaurant.TableName())
+		assert.NoError(t, responseFindOneUpdate.Error())
+		assert.NotEqual(t, entityToCheckUpdate.Name, entityToCheckFindOne.Name)
+
+		responseDelete := adapter.Delete(map[string]interface{}{"id": restaurant.ID}, restaurant.TableName())
+		assert.NoError(t, responseDelete.Error())
+		responseDelete = adapter.Delete(map[string]interface{}{"id": order.ID}, order.TableName())
+		assert.NoError(t, responseDelete.Error())
+
+		queryFindOneDelete := adapter.
+			Connection(restaurant.TableName()).
+			Where(map[string]interface{}{"id": restaurant.ID}).
+			Limit(1)
+		assert.NoError(t, queryFindOneDelete.Error)
+		entityToDelete := entities.Restaurant{}
+		responseFindOneDelete := adapter.Find(queryFindOneDelete, &entityToDelete, restaurant.TableName())
+		assert.Error(t, responseFindOneDelete.Error())
+		assert.Equal(t, responseFindOneDelete.Error().Error(), ErrRecordNotFound.Error())
+
+	})
+}
+
+func Test_Many_to_Many(t *testing.T) {
+	t.Run("Should run tests to execute Create, Read, Update, Delete with Many To Many", func(t *testing.T) {
+		connection := database.GetConnection("sqlite3", ":memory:").LogMode(true)
+		adapter := NewAdapter(connection).SetLogMode(true)
+		nameToCreateDoctor := uuid.New().String()
+		nameToCreatePatient := uuid.New().String()
+		doctor := &entities.Doctor{
+			ID:        uuid.New(),
+			Name:      nameToCreateDoctor,
+		}
+		patient := &entities.Patient{
+			ID:           uuid.New(),
+			Name: nameToCreatePatient,
+		}
+		doctorPatient := &entities.DoctorPatient{
+			ID:        uuid.New(),
+			PatientID: patient.ID,
+			DoctorID:  doctor.ID,
+		}
+		assert.NoError(t, connection.Table(doctor.TableName()).AutoMigrate(&entities.Doctor{}).Error)
+		assert.NoError(t, connection.Table(patient.TableName()).AutoMigrate(&entities.Patient{}).Error)
+		assert.NoError(t, connection.Table(doctorPatient.TableName()).AutoMigrate(&entities.DoctorPatient{}).Error)
+
+		doctor.SetCreatedAt()
+		doctor.SetUpdatedAt()
+		patient.SetCreatedAt()
+		patient.SetUpdatedAt()
+		doctorPatient.SetCreatedAt()
+		doctorPatient.SetUpdatedAt()
+
+		responseCreate := adapter.Create(doctor, doctor.TableName())
+		assert.NoError(t, responseCreate.Error())
+		responseCreate = adapter.Create(patient, patient.TableName())
+		assert.NoError(t, responseCreate.Error())
+		responseCreate = adapter.Create(doctorPatient, doctorPatient.TableName())
+		assert.NoError(t, responseCreate.Error())
+
+		queryFindAll := adapter.Connection(doctor.TableName())
+		entityToCheckFindAll := []entities.Doctor{}
+		responseFindAll := adapter.Find(queryFindAll, &entityToCheckFindAll, doctor.TableName())
+		assert.NoError(t, responseFindAll.Error())
+		assert.NotEqual(t, len(entityToCheckFindAll), 0)
+
+		queryFindOne := adapter.
+			Connection(doctor.TableName()).
+			Where(map[string]interface{}{"id": doctor.ID}).
+			Limit(1).
+			Preload("DoctorsPatients").
+			Preload("DoctorsPatients.Patient").
+			Preload("DoctorsPatients.Doctor")
+		entityToCheckFindOne := entities.Doctor{}
+		responseFindOne := adapter.Find(queryFindOne, &entityToCheckFindOne, doctor.TableName())
+		assert.NoError(t, responseFindOne.Error())
+		assert.NotEqual(t, entityToCheckFindOne.ID, uuid.Nil)
+		assert.NotEqual(t, len(entityToCheckFindOne.DoctorsPatients), 0)
+		if len(entityToCheckFindOne.DoctorsPatients) > 0 {
+			assert.NotEqual(t, entityToCheckFindOne.DoctorsPatients[0].Doctor.ID, uuid.Nil)
+		}
+
+		doctor.Name = uuid.New().String()
+		responseUpdate := adapter.Update(map[string]interface{}{"id": doctor.ID}, doctor, doctor.TableName())
+		assert.NoError(t, responseUpdate.Error())
+
+		queryFindOneUpdate := adapter.
+			Connection(doctor.TableName()).
+			Where(map[string]interface{}{"id": doctor.ID}).
+			Limit(1)
+		assert.NoError(t, queryFindOneUpdate.Error)
+		entityToCheckUpdate := entities.Doctor{}
+		responseFindOneUpdate := adapter.Find(queryFindOneUpdate, &entityToCheckUpdate, doctor.TableName())
+		assert.NoError(t, responseFindOneUpdate.Error())
+		assert.NotEqual(t, entityToCheckUpdate.Name, entityToCheckFindOne.Name)
+
+		responseDelete := adapter.Delete(map[string]interface{}{"id": doctor.ID}, doctor.TableName())
+		assert.NoError(t, responseDelete.Error())
+		responseDelete = adapter.Delete(map[string]interface{}{"id": doctor.ID}, doctor.TableName())
+		assert.NoError(t, responseDelete.Error())
+
+		queryFindOneDelete := adapter.
+			Connection(doctor.TableName()).
+			Where(map[string]interface{}{"id": doctor.ID}).
+			Limit(1)
+		assert.NoError(t, queryFindOneDelete.Error)
+		entityToDelete := entities.Doctor{}
+		responseFindOneDelete := adapter.Find(queryFindOneDelete, &entityToDelete, doctor.TableName())
+		assert.Error(t, responseFindOneDelete.Error())
+		assert.Equal(t, responseFindOneDelete.Error().Error(), ErrRecordNotFound.Error())
+
+	})
+}

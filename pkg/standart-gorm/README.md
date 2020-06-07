@@ -64,3 +64,63 @@ swag ini -g ./cmd/main.go
 To more information you can see [docs of SWAG](https://github.com/swaggo/swag)
 
 ## Migrations
+
+This project contains migrations to update database relational, install [go-migrate CLI](https://github.com/golang-migrate/migrate/tree/master/cmd/migrate) to use command-line and setup your database usage.
+
+#### Example of the Connection String
+- [POSTGRESQL](https://github.com/golang-migrate/migrate/tree/master/database/postgres)
+```text
+postgres://user:password@host:port/database
+```
+- [MYSQL](https://github.com/golang-migrate/migrate/tree/master/database/mysql)
+```text
+mysql://user:password@tcp(host:port)/database
+```
+- [SQLSERVER](https://github.com/golang-migrate/migrate/tree/master/database/sqlserver)
+```text
+sqlserver://user:password@host:port?database=value
+```
+
+#### Install driver
+For usage this lib your need install driver for usage.
+
+Example using `postgres`
+```bash
+go get -tags 'postgres' -u github.com/golang-migrate/migrate/v4/cmd/migrate/
+```
+for more driver installation you can see in [Migrate-databases](https://github.com/golang-migrate/migrate#databases)
+
+#### Running
+
+Migrate Create - Create new migration
+```bash
+migrate create -ext sql -dir ./migrations/{DRIVER} {MIGRATION_NAME}
+```
+
+Migrate Up - Up all migrations in sequence by date
+```bash
+migrate -path ./migrations/{DRIVER} -database {CONNECTION_STRING} up
+```
+
+Migrate Down - Down one migration in sequence by date
+```bash
+migrate -path ./migrations/{DRIVER} -database {CONNECTION_STRING} down
+```
+
+Migrate Steps - Up/Down NUMBER update/downgrade in sequence by date
+```bash
+migrate -path ./migrations/{DRIVER} -database {CONNECTION_STRING} up 1
+```
+```bash
+migrate -path ./migrations/{DRIVER} -database {CONNECTION_STRING} down 1
+```
+
+Migrate Specific - Migrate to specific version of migrations in folder selected
+```bash
+migrate -path ./migrations/{DRIVER} -database {CONNECTION_STRING} goto {VERSION}
+```
+
+Migrate Version - See your actual version
+```bash
+migrate -path ./migrations/{DRIVER} -database {CONNECTION_STRING} version
+```
