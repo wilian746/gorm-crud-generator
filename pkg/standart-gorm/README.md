@@ -64,31 +64,38 @@ swag ini -g ./cmd/main.go
 To more information you can see [docs of SWAG](https://github.com/swaggo/swag)
 
 ## Migrations
-
 This project contains migrations to update database relational, install [go-migrate CLI](https://github.com/golang-migrate/migrate/tree/master/cmd/migrate) to use command-line and setup your database usage.
+And to apply and usage it's using [go-migrate](https://github.com/golang-migrate/migrate)
 
 #### Example of the Connection String
-- [POSTGRESQL](https://github.com/golang-migrate/migrate/tree/master/database/postgres)
+- [POSTGRESQL](https://github.com/golang-migrate/migrate/tree/master/database/postgres) Example:
 ```text
-postgres://user:password@host:port/database
+postgres://root:root@localhost:5432/postgres
 ```
-- [MYSQL](https://github.com/golang-migrate/migrate/tree/master/database/mysql)
+- [MYSQL](https://github.com/golang-migrate/migrate/tree/master/database/mysql) Example:
 ```text
-mysql://user:password@tcp(host:port)/database
+mysql://root:root@tcp(localhost:3306)/mysql
 ```
-- [SQLSERVER](https://github.com/golang-migrate/migrate/tree/master/database/sqlserver)
+- [SQLSERVER](https://github.com/golang-migrate/migrate/tree/master/database/sqlserver) Example:
 ```text
-sqlserver://user:password@host:port?database=value
+sqlserver://sa:YourStrong@Passw0rd@localhost:1433?database=master
 ```
 
 #### Install driver
 For usage this lib your need install driver for usage.
 
-Example using `postgres`
+- Example using `postgres`
 ```bash
 go get -tags 'postgres' -u github.com/golang-migrate/migrate/v4/cmd/migrate/
 ```
-for more driver installation you can see in [Migrate-databases](https://github.com/golang-migrate/migrate#databases)
+- Example using `mysql`
+```bash
+go get -tags 'mysql' -u github.com/golang-migrate/migrate/v4/cmd/migrate/
+```
+- Example using `sqlserver`
+```bash
+go get -tags 'sqlserver' -u github.com/golang-migrate/migrate/v4/cmd/migrate/
+```
 
 #### Running
 
