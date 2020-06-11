@@ -1,20 +1,21 @@
 package init
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/wilian746/go-generator/internal/controllers/generate/app"
 	"github.com/wilian746/go-generator/internal/enums/errors"
 	EnumsRepository "github.com/wilian746/go-generator/internal/enums/repository"
 	EnumsRepositoryGenerate "github.com/wilian746/go-generator/internal/enums/repository/generate"
+	"github.com/wilian746/go-generator/internal/utils/logger"
 	"github.com/wilian746/go-generator/internal/utils/prompt"
 	"os"
 	"strings"
 )
 
 type Interface interface {
-	Execute(cmd *cobra.Command, args []string) error
 	Cmd() *cobra.Command
-	Init()
+	Execute(_ *cobra.Command, args []string) error
 }
 
 type Command struct {
@@ -57,10 +58,7 @@ func (c *Command) Init() {
 		Use:     "init",
 		Short:   "Initialize complete application using selected database",
 		Long:    "Get base of the project, handlers, controllers, repository using selected database",
-		Example: `
-go-generator init gorm app
-go-generator init mongo app
-`,
+		Example: "go-generator init gorm app",
 		Args: func(cmd *cobra.Command, args []string) error {
 			if len(args) != 2 {
 				return errors.ErrInitArgsInvalid
@@ -75,6 +73,7 @@ go-generator init mongo app
 		},
 		RunE:    c.Execute,
 	}
+	c.setupUsageCmd()
 }
 
 func (c *Command) initApp(db EnumsRepository.Database) error {
@@ -95,4 +94,18 @@ func (c *Command) initApp(db EnumsRepository.Database) error {
 		return errors.ErrModuleNameInvalid
 	}
 	return app.NewApp().CreateFoldersAndFiles(pathDestiny, moduleName, db)
+}
+
+func (c *Command) setupUsageCmd() {
+	c.cmd.SetUsageFunc(func(command *cobra.Command) error {
+		logPrint := fmt.Sprintf(`
+Usage:
+	go-generator init [REPOSITORY] [GENERATE_TYPE]
+
+Examples:
+	%s
+`, command.Example)
+		logger.PRINT(logPrint)
+		return nil
+	})
 }

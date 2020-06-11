@@ -102,7 +102,7 @@ func (a *App) writeContent(pathDestiny, dir string, fileContent []byte) error {
 	if err != nil {
 		return err
 	}
-	logger.INFO("File generated with success: "+absPath, nil)
+	logger.PRINT("File generated with success: "+absPath)
 	return nil
 }
 

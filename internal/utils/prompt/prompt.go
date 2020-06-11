@@ -28,10 +28,3 @@ func (p *Prompt) Ask(label, defaultValue string) (string, error) {
 	p.prompt.Default = defaultValue
 	return p.prompt.Run()
 }
-
-func (p *Prompt) Selection(label, items []string) (string, error) {
-	p.selection.Label = label
-	p.selection.Items = items
-	_, response, err := p.selection.Run()
-	return response, err
-}
