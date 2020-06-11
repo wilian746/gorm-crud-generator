@@ -1,19 +1,19 @@
 package generate
 
-type GenerateCommand string
+type Command string
 
 const (
-	App     GenerateCommand = "app"
-	Unknown GenerateCommand = "unknown"
+	App     Command = "app"
+	Unknown Command = "unknown"
 )
 
-func Values() []GenerateCommand {
-	return []GenerateCommand{
+func Values() []Command {
+	return []Command{
 		App,
 	}
 }
 
-func ValueOf(value string) GenerateCommand {
+func ValueOf(value string) Command {
 	for _, db := range Values() {
 		if string(db) == value {
 			return db

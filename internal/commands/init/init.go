@@ -44,7 +44,7 @@ func (c *Command) Execute(_ *cobra.Command, args []string) error {
 	}
 }
 
-func (c *Command) gormInit(value EnumsRepositoryGenerate.GenerateCommand) error {
+func (c *Command) gormInit(value EnumsRepositoryGenerate.Command) error {
 	switch value {
 	case EnumsRepositoryGenerate.App:
 		return c.initApp(EnumsRepository.Gorm)
@@ -71,7 +71,7 @@ func (c *Command) Init() {
 			}
 			return nil
 		},
-		RunE:    c.Execute,
+		RunE: c.Execute,
 	}
 	c.setupUsageCmd()
 }

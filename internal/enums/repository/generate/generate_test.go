@@ -8,7 +8,7 @@ import (
 func TestEnum(t *testing.T) {
 	t.Run("Should return valid repository", func(t *testing.T) {
 		v := Values()
-		assert.Equal(t, v, []GenerateCommand{App})
+		assert.Equal(t, v, []Command{App})
 	})
 	t.Run("Should return app repository", func(t *testing.T) {
 		assert.Equal(t, ValueOf("app"), App)

@@ -2,10 +2,10 @@ package help
 
 import (
 	"fmt"
+	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/spf13/cobra"
 	"github.com/wilian746/go-generator/internal/enums/globals"
 	"github.com/wilian746/go-generator/internal/utils/logger"
-	"github.com/jedib0t/go-pretty/v6/table"
 	"os"
 )
 
@@ -46,7 +46,7 @@ func (h *Help) Execute(_ *cobra.Command, _ []string) error {
 	return nil
 }
 
-func (h *Help) PrintHelp(examples string, additionalInfo string) {
+func (h *Help) PrintHelp(examples, additionalInfo string) {
 	h.printHeader(examples)
 	h.printAvailableCommands()
 	h.printAdditionalInformation(additionalInfo)

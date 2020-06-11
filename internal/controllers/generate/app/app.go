@@ -19,7 +19,7 @@ type Interface interface {
 	CreateFoldersAndFiles(pathDestiny, moduleName string, db EnumsRepository.Database) error
 }
 
-type App struct{
+type App struct {
 	db EnumsRepository.Database
 }
 
@@ -102,7 +102,7 @@ func (a *App) writeContent(pathDestiny, dir string, fileContent []byte) error {
 	if err != nil {
 		return err
 	}
-	logger.PRINT("File generated with success: "+absPath)
+	logger.PRINT("File generated with success: " + absPath)
 	return nil
 }
 

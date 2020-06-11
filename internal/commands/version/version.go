@@ -12,8 +12,8 @@ type Interface interface {
 }
 
 type Version struct {
-	cmd    *cobra.Command
-	rootCmd    *cobra.Command
+	cmd     *cobra.Command
+	rootCmd *cobra.Command
 }
 
 func NewVersionCommand(rootCmd *cobra.Command) Interface {

@@ -9,7 +9,7 @@ type Interface interface {
 }
 
 type Prompt struct {
-	prompt *promptui.Prompt
+	prompt    *promptui.Prompt
 	selection *promptui.Select
 }
 
@@ -17,7 +17,7 @@ func NewPrompt() Interface {
 	return &Prompt{
 		prompt: &promptui.Prompt{
 			AllowEdit: true,
-			Pointer: promptui.PipeCursor,
+			Pointer:   promptui.PipeCursor,
 		},
 		selection: &promptui.Select{},
 	}
