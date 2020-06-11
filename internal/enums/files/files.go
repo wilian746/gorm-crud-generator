@@ -33,21 +33,12 @@ const (
 	InternalUtilsHTTPResponse                  Files = "internal/utils/http/response.go"
 	InternalUtilsLoggerLogger                  Files = "internal/utils/logger/logger.go"
 	InternalUtilsLoggerLoggerTest              Files = "internal/utils/logger/logger_test.go"
-	MigrationsMysqlCreateTableProductsUp       Files = "migrations/mysql/20200607175350_create_table_products.up.sql"
-	MigrationsMysqlCreateTableProductsDown     Files = "migrations/mysql/20200607175350_create_table_products.down.sql"
-	MigrationsPostgresCreateTableProductsUp    Files = "migrations/postgres/20200607175350_create_table_products.up.sql"
-	MigrationsPostgresCreateTableProductsDown  Files = "migrations/postgres/20200607175350_create_table_products.down.sql"
-	MigrationsSQLServerCreateTableProductsUp   Files = "migrations/sqlserver/20200607175350_create_table_products.up.sql"
-	MigrationsSQLServerCreateTableProductsDown Files = "migrations/sqlserver/20200607175350_create_table_products.down.sql"
 	PkgRepositoryAdapterAdapter                Files = "pkg/repository/adapter/adapter.go"
 	PkgRepositoryAdapterAdapterTest            Files = "pkg/repository/adapter/adapter_test.go"
 	PkgRepositoryAdapterAdapterMock            Files = "pkg/repository/adapter/adapter_mock.go"
 	PkgRepositoryDatabaseDatabase              Files = "pkg/repository/database/database.go"
 	PkgRepositoryDatabaseDatabaseTest          Files = "pkg/repository/database/database_test.go"
 	PkgRepositoryEntitiesInterface             Files = "pkg/repository/entities/interface.go"
-	PkgRepositoryEntitiesManyToMany            Files = "pkg/repository/entities/many_to_many.go"
-	PkgRepositoryEntitiesOneToMany             Files = "pkg/repository/entities/one_to_many.go"
-	PkgRepositoryEntitiesOneToOne              Files = "pkg/repository/entities/one_to_one.go"
 	PkgRepositoryResponseResponse              Files = "pkg/repository/response/response.go"
 	PkgRepositoryResponseResponseTest          Files = "pkg/repository/response/response_test.go"
 	Readme                                     Files = "README.md"
@@ -92,21 +83,12 @@ func Values() []Files {
 		InternalUtilsHTTPResponse,
 		InternalUtilsLoggerLogger,
 		InternalUtilsLoggerLoggerTest,
-		MigrationsMysqlCreateTableProductsUp,
-		MigrationsMysqlCreateTableProductsDown,
-		MigrationsPostgresCreateTableProductsUp,
-		MigrationsPostgresCreateTableProductsDown,
-		MigrationsSQLServerCreateTableProductsUp,
-		MigrationsSQLServerCreateTableProductsDown,
 		PkgRepositoryAdapterAdapter,
 		PkgRepositoryAdapterAdapterTest,
 		PkgRepositoryAdapterAdapterMock,
 		PkgRepositoryDatabaseDatabase,
 		PkgRepositoryDatabaseDatabaseTest,
 		PkgRepositoryEntitiesInterface,
-		PkgRepositoryEntitiesManyToMany,
-		PkgRepositoryEntitiesOneToMany,
-		PkgRepositoryEntitiesOneToOne,
 		PkgRepositoryResponseResponse,
 		PkgRepositoryResponseResponseTest,
 		Readme,

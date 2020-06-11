@@ -1,11 +1,12 @@
 package prompt
 
 import (
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
-func TestPrompt_Ask(t *testing.T) {
+func TestNewPrompt(t *testing.T) {
 	t.Run("Should run command without panics", func(t *testing.T) {
-		NewPrompt()
+		assert.NotNil(t, NewPrompt())
 	})
 }

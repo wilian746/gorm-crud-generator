@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"github.com/wilian746/go-generator/internal/commands/cmd_init"
+	cmdInit "github.com/wilian746/go-generator/internal/commands/init"
+	"github.com/wilian746/go-generator/internal/utils/prompt"
 	"os"
 )
 
@@ -15,7 +16,7 @@ var rootCmd = &cobra.Command{
 
 // nolint
 func init() {
-	rootCmd.AddCommand(cmdinit.NewInitCommand().Cmd())
+	rootCmd.AddCommand(cmdInit.NewInitCommand(prompt.NewPrompt()).Cmd())
 }
 
 func main() {
