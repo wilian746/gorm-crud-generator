@@ -26,6 +26,12 @@ go get -u github.com/wilian746/go-generator/cmd/go-generator
 go-generator
 ```
 
+### About the commands available
+- The commands currently available are:
+    - `go-generator help` -> You can see details and examples to run command
+    - `go-generator version` -> You can see actual version running
+    - `go-generator init [REPOSITORY] [GENERATE_TYPE]` -> You can run this command to generate new application using repository available:
+
 ### Init application
 This command will copy all standard content using gorm library to path and module indicated  
  ```bash
