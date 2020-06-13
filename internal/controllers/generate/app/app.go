@@ -137,7 +137,7 @@ func (a *App) copyDefaultFiles(pathDestiny, moduleName string) error {
 	return nil
 }
 
-func (a *App) getFileStringFromRepository(databaseFolderName string, dir string) ([]byte, error) {
+func (a *App) getFileStringFromRepository(databaseFolderName, dir string) ([]byte, error) {
 	latestVersionStable := environment.GetEnvString("GO_GENERATOR_TAG_NAME", "master")
 	routerGithub := fmt.Sprintf("%s/%s/%s", latestVersionStable, databaseFolderName, dir)
 	return github.GetFileFromGithub(routerGithub)
